@@ -11,3 +11,7 @@ Você precisa ter instalado globalmente as seguintes aplicações
 ```
 $ npm run start-dev
 ```
+
+## Configurações de ambiente
+Crie um arquivo .env com os seguintes dados
+PORT="numero_da_porta_para_rodar_o_servidor"
