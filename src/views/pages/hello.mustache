@@ -1,0 +1,15 @@
+<h1>Olá, {{name}}</h1>
+
+<p>Seja bem-vindo, {{name}} {{lastName}}</p>
+<p>seu curso é: {{curso}}</p>
+<p>Linguagem favorita: {{linguagem}}</p>
+<p>Sistemas operacionais favoritos: {{linguagem}}</p>
+<ul>
+    {{#sistemas}}
+    <li>{{.}}</li>
+    {{/sistemas}}
+</ul>
+
+<a href="/estudante/getListaEstudantes">Ver lista de estudantes</a> <br>
+<a href="/">Formulário de estudantes</a>
+

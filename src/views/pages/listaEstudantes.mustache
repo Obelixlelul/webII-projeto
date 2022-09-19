@@ -1,0 +1,48 @@
+<style>
+
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<p>Lista de estudantes cadastrados:</p>
+<ul>
+    {{#listaDeEstudantes}}
+    <li>{{name}} {{lastName}} - Curso: {{curso}}</li>
+    {{/listaDeEstudantes}}
+</ul>
+
+<p>Tabela com as infos: </p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Curso</th>
+        <th>Linguagem</th>
+    </tr>
+    
+    
+    {{#listaDeEstudantes}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}} {{lastName}}</td>
+        <td>{{curso}}</td>
+        <td>{{linguagem}}</td>
+    </tr>
+    {{/listaDeEstudantes}}
+</table>
+
+
+<a href="/">Formulário de estudantes</a>

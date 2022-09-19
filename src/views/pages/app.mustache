@@ -1,0 +1,34 @@
+<h1>Spring MVC Demo - Hello World</h1>
+<h1>seja bem vindo {{name}}</h1>
+
+<form action="/estudante/adicionar" method="post">
+        <p>Primeiro Nome: <input type="text" placeholder="Insira seu nome" name="name"/></p>
+        <p>Último Nome: <input type="text" placeholder="Insira seu sobrenome" name="lastName"/></p>
+        
+        <p>Curso: 
+            <select name="curso" id="curso">
+                {{#cursos}}
+                <option value="{{title}}">{{title}}</option>
+                {{/cursos}}
+            </select>
+        </p>
+
+        <p> 
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <label for="html">HTML</label><br>
+            <input type="radio" id="css" name="fav_language" value="CSS">
+            <label for="css">CSS</label><br>
+            <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+            <label for="javascript">JavaScript</label>
+        </p>
+
+        <p>   
+            <input type="checkbox" name="sistemas" value="OSX">
+            <label > OSX </label><br>
+            <input type="checkbox" name="sistemas" value="Windows">
+            <label > Windows </label><br>
+            <input type="checkbox" name="sistemas" value="Linux">
+            <label > Linux</label><br>
+        </p>
+        <p><input type="submit" value="Adicionar" /></p>
+</form>
