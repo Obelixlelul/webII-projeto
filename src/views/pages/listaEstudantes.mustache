@@ -31,6 +31,8 @@
         <th>Nome</th>
         <th>Curso</th>
         <th>Linguagem</th>
+        <th>-</th>
+        <th>-</th>
     </tr>
     
     
@@ -40,9 +42,14 @@
         <td>{{name}} {{lastName}}</td>
         <td>{{curso}}</td>
         <td>{{linguagem}}</td>
+        <td><a href="/estudante/detetar/{{id}}">Deletar</a></td>
+        <td><a href="/estudante/detalhe/{{id}}">Detalhe</a></td>
     </tr>
     {{/listaDeEstudantes}}
 </table>
 
 
+
 <a href="/">Formulário de estudantes</a>
+<a href="/estudantesporcurso">Estudantes por curso</a>
+<a href="/estudantesporlinguagem">Estudantes por linguagem</a>

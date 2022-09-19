@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
-import {CriarEstudante, listarEstudantes} from '../model/Estudante';
+import * as EstudanteModel from '../model/Estudante';
 import { v4 as uuidv4 } from 'uuid';
+import { getCursos } from '../model/Curso';
 
 export const adicionar = (req: Request, res: Response) => {
     
@@ -13,8 +14,66 @@ export const adicionar = (req: Request, res: Response) => {
         sistemas : req.body.sistemas
     }
 
-    CriarEstudante(estudante);
+    EstudanteModel.CriarEstudante(estudante);
 
+    let listaDeEstudantes = EstudanteModel.listarEstudantes();
+
+    res.redirect('/estudante/getListaEstudantes');
+
+}
+
+export const listar = (req: Request, res: Response) => {
+    let listaDeEstudantes;
+
+   
+    listaDeEstudantes = EstudanteModel.listarEstudantes();
+    
+
+    res.render('pages/listaEstudantes', {
+        listaDeEstudantes
+    })
+}
+
+export const listarPorCurso = (req: Request, res: Response) => {
+
+    let cursos = getCursos();
+    let estudantes = EstudanteModel.listarEstudantes();
+   
+    // console.log(cursos);
+    // console.log(estudantes);
+
+    let filtered:any = [];
+   
+    cursos.forEach(element => {
+        filtered.push(estudantes.filter(estudante => estudante.curso === element.title));
+    });     
+
+    res.render('pages/estudantesPorCurso', {
+        filtered
+    })
+}
+
+export const listarPorLinguagem = (req: Request, res: Response) => {
+    let listaDeEstudantes;
+
+   
+    listaDeEstudantes = EstudanteModel.listarEstudantes();
+    
+
+    res.render('pages/estudantesPorCurso', {
+        listaDeEstudantes
+    })
+}
+
+
+export const deletar = (req: Request, res: Response) => {
+    EstudanteModel.deletarEstudante(req.params.id);
+    res.redirect('/estudante/getListaEstudantes');
+}
+
+export const detalhar = (req: Request, res: Response) => {
+    let estudante = EstudanteModel.getById(req.params.id);
+    
     res.render('pages/hello', {
         id: estudante.id,
         name: estudante.name,
@@ -23,14 +82,5 @@ export const adicionar = (req: Request, res: Response) => {
         linguagem: estudante.linguagem,
         sistemas: estudante.sistemas
     });
-
 }
 
-export const listar = (req: Request, res: Response) => {
-    let listaDeEstudantes = listarEstudantes();
-
-    res.render('pages/listaEstudantes', {
-        listaDeEstudantes
-    })
-
-}
