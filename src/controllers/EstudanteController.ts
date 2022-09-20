@@ -37,20 +37,28 @@ export const listar = (req: Request, res: Response) => {
 export const listarPorCurso = (req: Request, res: Response) => {
 
     let cursos = getCursos();
-    let estudantes = EstudanteModel.listarEstudantes();
-   
-    // console.log(cursos);
-    // console.log(estudantes);
+    let listaDeEstudantes: any[];
 
-    let filtered:any = [];
+    listaDeEstudantes = EstudanteModel.listarEstudantes();
    
-    cursos.forEach(element => {
-        filtered.push(estudantes.filter(estudante => estudante.curso === element.title));
+    const obj: any = [];
+
+    cursos.forEach(curso => {       
+        let tempStudent = listaDeEstudantes.filter(estudante => estudante.curso == curso.title);
+        obj.push({
+            "title" : curso.title.toString(),
+            "estudantes" : tempStudent,
+            "size" : tempStudent.length
+        }); 
     });     
 
+    console.log(listaDeEstudantes);
+    console.log(obj);
+
     res.render('pages/estudantesPorCurso', {
-        filtered
+        obj
     })
+
 }
 
 export const listarPorLinguagem = (req: Request, res: Response) => {

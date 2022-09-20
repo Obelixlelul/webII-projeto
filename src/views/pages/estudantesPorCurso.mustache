@@ -1,11 +1,15 @@
-<p>Lista de estudantes cadastrados:</p>
+<h1>Lista de estudantes cadastrados:</h1>
 <ul>
-    {{#filtered}}
-        {{#.}}
-            <li>{{name}} - {{curso}}</li>
-        {{/.}}
-    {{/filtered}}
+    {{#obj}}        
+            <h2>{{title}} tem {{size}} aluno(s)</h2>
+            {{#estudantes}}
+                <p>{{name}}</p>
+            {{/estudantes}}
+    {{/obj}}
+
+   
 </ul>
 
+<a href="/">Formulario</a>
 
 
