@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import * as EstudanteModel from '../model/Estudante';
 import { v4 as uuidv4 } from 'uuid';
-import { getCursos } from '../model/Curso';
+import { getCursos, getLinguagens } from '../model/Curso';
 
 export const adicionar = (req: Request, res: Response) => {
     
@@ -52,9 +52,6 @@ export const listarPorCurso = (req: Request, res: Response) => {
         }); 
     });     
 
-    console.log(listaDeEstudantes);
-    console.log(obj);
-
     res.render('pages/estudantesPorCurso', {
         obj
     })
@@ -62,14 +59,24 @@ export const listarPorCurso = (req: Request, res: Response) => {
 }
 
 export const listarPorLinguagem = (req: Request, res: Response) => {
-    let listaDeEstudantes;
+    let linguagens = getLinguagens();
+    let listaDeEstudantes: any[];
 
-   
     listaDeEstudantes = EstudanteModel.listarEstudantes();
-    
+   
+    const obj: any = [];
+
+    linguagens.forEach(linguagem => {       
+        let tempStudent = listaDeEstudantes.filter(estudante => estudante.linguagem == linguagem.title);
+        obj.push({
+            "title" : linguagem.title.toString(),
+            "estudantes" : tempStudent,
+            "size" : tempStudent.length
+        }); 
+    });     
 
     res.render('pages/estudantesPorCurso', {
-        listaDeEstudantes
+        obj
     })
 }
 

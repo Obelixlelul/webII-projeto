@@ -4,8 +4,18 @@ const cursos = [
     {title: 'EngComp'}
 ];
 
+const linguagens = [
+    {title: `HTML`},
+    {title: `CSS`},
+    {title: `JavaScript`},
+]
+
 export const getCursos = () => {
     return cursos;
+}
+
+export const getLinguagens = () => {
+    return linguagens;
 }
 
 export const addCurso = (nomeDoCurso: string) => {
